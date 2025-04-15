@@ -1,0 +1,72 @@
+{% extends "home.html" %}
+
+{% block title %}Resumo diário{% endblock title %}
+
+{% block css %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'daily_summary.css' %}">
+{% endblock css %}
+
+{% block content %}
+    <h2><b>Resumo diário - {{ date }}</b></h2>
+    <div class="container">
+        <table class="table table-hover">
+            <thead>
+              <tr>
+                <th>Proteínas (g)</th>
+                <th>Carboidratos (g)</th>
+                <th>Gorduras (g)</th>
+                <th>Calorias (kcal)</th>
+                <th>Água (mL)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>{{ total_protein }}</td>
+                <td>{{ total_carbs }}</td>
+                <td>{{ total_fat }}</td>
+                <td>{{ total_calories }}</td>
+                <td>{{ total_water }}</td>
+              </tr>
+            </tbody>
+        </table>
+        <h3>Meta</h3>
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th>Proteínas (g)</th>
+              <th>Carboidratos (g)</th>
+              <th>Gorduras (g)</th>
+              <th>Calorias (kcal)</th>
+              <th>Água (mL)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>{{ goal.protein_goal }}</td>
+              <td>{{ goal.carbs_goal }}</td>
+              <td>{{ goal.fat_goal }}</td>
+              <td>{{ goal.calories_goal }}</td>
+              <td>{{ goal.water_goal }}</td>
+            </tr>
+          </tbody>
+      </table>
+      <div class="container">
+        <div class="row">
+          <div class="col-6">
+            {{ chart_protein|safe }}
+          </div>
+          <div class="col-6">
+            {{ chart_carbs|safe }}
+          </div>
+          <div class="col-6">
+            {{ chart_fat|safe }}
+          </div>
+          <div class="col-6">
+            {{ chart_calories|safe }}
+          </div>
+        </div>
+      </div>     
+      {{ chart_water|safe }}
+    </div>
+{% endblock content %}

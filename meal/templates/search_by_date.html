@@ -1,0 +1,48 @@
+{% extends "home.html" %}
+
+{% block title %}Buscar{% endblock title %}
+
+{% block css %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'search_by_date.css' %}">
+{% endblock css %}
+
+{% block content %}
+<div class="container">
+    <h1><b>Refeições</b></h1>
+    <a href="{% url "meal:home" %}"><button type="submit" class="btn btn-primary">Voltar</button></a>
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>Refeição</th>
+          <th>Proteínas (g)</th>
+          <th>Carboidratos (g)</th>
+          <th>Gorduras (g)</th>
+          <th>Calorias (kcal)</th>
+          <th>Água (mL)</th>
+          <th>Data e hora</th>
+          <th colspan="2">Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for meal in meals %}
+          <tr>
+            <td>{{ meal.meal_name }}</td>
+            <td>{{ meal.protein }}</td>
+            <td>{{ meal.carbs }}</td>
+            <td>{{ meal.fat }}</td>
+            <td>{{ meal.calories }}</td>
+            <td>{{ meal.water }}</td>
+            <td>{{ meal.datetime }}</td>
+            <td>
+              <a href="{% url "meal:edit_meal" meal.pk %}"><button type="button" class="btn btn-primary">Editar</button></a>
+            </td>
+            <td>
+              <a href="{% url "meal:delete_meal" meal.pk %}"><button type="button" class="btn btn-danger">Excluir</button></a>
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+{% endblock content %}

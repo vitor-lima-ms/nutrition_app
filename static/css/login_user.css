@@ -1,0 +1,29 @@
+
+#success_message {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1em;
+}
+
+h3 {
+    font-weight: bold;
+    text-align: center;
+    margin-top: 1em;
+}
+form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1em;
+    font-size: larger;
+    border-radius: 0.5em;
+}
+table {
+    font-weight: bold;
+    text-align: center;
+}
+
+table td {
+    padding: 0.25em;
+}

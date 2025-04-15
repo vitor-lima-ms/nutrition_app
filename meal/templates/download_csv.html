@@ -1,0 +1,49 @@
+{% extends "home.html" %}
+
+{% block title %}Download CSV{% endblock title %}
+
+{% block css %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'download_csv.css' %}">
+{% endblock css %}
+
+{% block content %}
+    <h1><b>Download</b></h1>
+    <div class="row">
+        <div class="col-2">
+            <form action="{% url "meal:download_csv" %}" method="post">
+                {% csrf_token %}
+                {{ form.format }}
+                <button type="submit" class="btn btn-primary">Download</button>
+            </form>
+        </div>
+    </div>
+    <div class="container">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Refeição</th>
+                    <th>Proteínas (g)</th>
+                    <th>Carboidratos (g)</th>
+                    <th>Gorduras (g)</th>
+                    <th>Calorias (kcal)</th>
+                    <th>Água (mL)</th>
+                    <th>Data e hora</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for meal in object_list %}
+                    <tr>
+                        <td>{{ meal.meal_name }}</td>
+                        <td>{{ meal.protein }}</td>
+                        <td>{{ meal.carbs }}</td>
+                        <td>{{ meal.fat }}</td>
+                        <td>{{ meal.calories }}</td>
+                        <td>{{ meal.water }}</td>
+                        <td>{{ meal.datetime }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock content %}
