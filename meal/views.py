@@ -60,7 +60,7 @@ class MealDownload(ListView, FormView):
     form_class = FormatForm    
 
     def post(self, request, **kwargs):
-        qs = self.get_queryset()
+        qs = Meal.objects.all()
         dataset = MealResource().export(qs)
 
         print(qs)
