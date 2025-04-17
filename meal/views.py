@@ -63,8 +63,6 @@ class MealDownload(ListView, FormView):
         qs = Meal.objects.all()
         dataset = MealResource().export(qs)
 
-        print(qs)
-
         format = request.POST.get('format')
 
         if format == 'csv':
